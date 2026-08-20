@@ -1,0 +1,9 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="freezestrike"
+version="1.0.0"
+displayName="Freeze Strike"
+description='Adds a Freeze Strike enchantment. Hitting an entity freezes its AI and accumulates damage. If no further damage is taken within 30 ticks, all accumulated damage and knockback are settled at once, restoring the entity's AI. Affects players too.'
