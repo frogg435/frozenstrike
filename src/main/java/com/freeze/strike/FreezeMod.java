@@ -4,7 +4,6 @@ import com.freeze.strike.enchant.FreezeStrikeEnchantment;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -19,8 +18,8 @@ public class FreezeMod {
     public static final RegistryObject<Enchantment> FREEZE_STRIKE = 
         ENCHANTMENTS.register("freeze_strike", FreezeStrikeEnchantment::new);
 
-    public FreezeMod() {
-        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+    // 1.20.1 推荐写法：通过构造函数注入 IEventBus，避免使用弃用的 FMLJavaModLoadingContext.get()
+    public FreezeMod(IEventBus modBus) {
         ENCHANTMENTS.register(modBus);
     }
 }

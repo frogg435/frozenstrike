@@ -7,7 +7,13 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class FreezeStrikeEnchantment extends Enchantment {
     public FreezeStrikeEnchantment() {
-        super(Rarity.RARE, (stack) -> true, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+        // 1.20.1 中 EnchantmentCategory 不是函数式接口，必须使用匿名内部类
+        super(Rarity.RARE, new EnchantmentCategory() {
+            @Override
+            public boolean canEnchant(ItemStack stack) {
+                return true; // 适用于所有物品
+            }
+        }, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 
     @Override
