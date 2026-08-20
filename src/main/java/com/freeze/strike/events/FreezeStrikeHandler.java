@@ -118,7 +118,6 @@ public class FreezeStrikeHandler {
                 if (target.level() instanceof ServerLevel serverLevel) {
                     Entity attackerEntity = serverLevel.getEntity(attackerUUID);
 
-                    // 修复 1.20.1 DamageSource API 变动
                     if (attackerEntity instanceof LivingEntity attacker) {
                         DamageSource source;
                         if (attacker instanceof Player p) {
@@ -132,7 +131,6 @@ public class FreezeStrikeHandler {
                         target.hurt(source, damage);
                         data.remove(SETTLING_KEY);
                     } else {
-                        // 攻击者消失，使用 generic 伤害来源
                         data.putBoolean(SETTLING_KEY, true);
                         target.invulnerableTime = 0;
                         target.hurt(target.level().damageSources().generic(), damage);

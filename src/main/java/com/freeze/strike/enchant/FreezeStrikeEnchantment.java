@@ -7,13 +7,9 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class FreezeStrikeEnchantment extends Enchantment {
     public FreezeStrikeEnchantment() {
-        // 1.20.1 中 EnchantmentCategory 不是函数式接口，必须使用匿名内部类
-        super(Rarity.RARE, new EnchantmentCategory() {
-            @Override
-            public boolean canEnchant(ItemStack stack) {
-                return true; // 适用于所有物品
-            }
-        }, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+        // 1.20.1 中 EnchantmentCategory 是枚举类，不能被实例化。
+        // 传入原版最宽松的 BREAKABLE 分类，并在下面重写 canEnchant 彻底放开限制。
+        super(Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 
     @Override
@@ -21,6 +17,7 @@ public class FreezeStrikeEnchantment extends Enchantment {
         return 1;
     }
 
+    // 重写判定，使其在铁砧和附魔台中适用于任何物品
     @Override
     public boolean canEnchant(ItemStack stack) {
         return true; 

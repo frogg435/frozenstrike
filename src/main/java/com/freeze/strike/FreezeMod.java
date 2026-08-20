@@ -18,7 +18,6 @@ public class FreezeMod {
     public static final RegistryObject<Enchantment> FREEZE_STRIKE = 
         ENCHANTMENTS.register("freeze_strike", FreezeStrikeEnchantment::new);
 
-    // 1.20.1 推荐写法：通过构造函数注入 IEventBus，避免使用弃用的 FMLJavaModLoadingContext.get()
     public FreezeMod(IEventBus modBus) {
         ENCHANTMENTS.register(modBus);
     }
